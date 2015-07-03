@@ -35,7 +35,16 @@ public class HttpDownLoader {
 	{
 		page_dir = tags + "Pages";
 		image_dir = tags + "Images";
+		
+		File file = new File(page_dir);
+		if(!file.exists())
+			file.mkdir();
+		
+		file = new File(image_dir);
+		if(!file.exists())
+			file.mkdir();
 	}
+	
 	/* 下载某一个网页的源代码  */
 	public String downLoadPage(String url){
 		String filepath = page_dir + "/" + Algorithm.getMD5(url.getBytes()) + ".html";
@@ -94,6 +103,9 @@ public class HttpDownLoader {
 				fos.close();
 				String site_page = buffer.toString();
 				
+				//log out
+				System.out.println(url);
+				
 				return site_page;
 			}
 		} catch (Exception e) {
@@ -139,6 +151,8 @@ public class HttpDownLoader {
 				is.close();
 				fos.close();
 				
+				//log out
+				System.out.println(url);
 			}
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
