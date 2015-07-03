@@ -13,7 +13,7 @@ public class MeizituCrawler extends Crawler {
 	private static String base_domain = "mzitu.com";
 	private static String site_tag = "Meizitu";
 	
-	private static String img_lable = "div.m-list-content img";
+	private static String img_lable = "div.list img";
 	
 	public MeizituCrawler() {
 		// TODO Auto-generated constructor stub
