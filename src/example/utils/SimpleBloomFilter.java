@@ -7,7 +7,7 @@ import java.util.BitSet;
  * 传统的Bloom Filter不支持从集合中删除成员
  * Counting Bloom Filter由于采用了计数,因此支持remove操作
  * 基于BitSet实现,性能上可能存在问题
- * @author liuchun
+ * @author zjupure
  *
  */
 public class SimpleBloomFilter {

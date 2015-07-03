@@ -28,28 +28,17 @@ import org.apache.http.util.CharArrayBuffer;
 import example.algorithm.Algorithm;
 
 public class HttpDownLoader {
-	//网站入口地址,base url
-	private static String base_url = "http://www.mzitu.com/";
-	private String site_page = "";
-	//SQL插入语句
-	private static String format = "INSERT INTO save_url "
-				+ "(name,type,url) "
-				+ "VALUES(\'%s\',\'%s\',\'%s\')";
+	public String page_dir;
+	public String image_dir;
 	
-	
-	public HttpDownLoader() {
-		// TODO Auto-generated constructor stub
-		this(base_url);
+	public HttpDownLoader(String tags)
+	{
+		page_dir = tags + "Pages";
+		image_dir = tags + "Images";
 	}
-	
-	public HttpDownLoader(String url) {
-		// TODO Auto-generated constructor stub
-		base_url = url;     //网站基址
-	}	
-	
 	/* 下载某一个网页的源代码  */
 	public String downLoadPage(String url){
-		String filename = Crawler.urlPath + "/" + Algorithm.getMD5(url.getBytes()) + ".html";
+		String filepath = page_dir + "/" + Algorithm.getMD5(url.getBytes()) + ".html";
 		
 		HttpClient httpClient = new DefaultHttpClient();
 		//httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 60000);  //设置超时时间	
@@ -92,7 +81,7 @@ public class HttpDownLoader {
 					count = 4096;
 				}
 				//文件输入流
-				OutputStreamWriter fos = new OutputStreamWriter(new FileOutputStream(new File(filename)), charset);
+				OutputStreamWriter fos = new OutputStreamWriter(new FileOutputStream(new File(filepath)), charset);
 				//缓存空间
 				CharArrayBuffer buffer = new CharArrayBuffer(count);
 				char[] tmp = new char[4096];   //一次读多个字节,提高速率
@@ -103,10 +92,7 @@ public class HttpDownLoader {
 				}
 				is.close();
 				fos.close();
-				site_page = buffer.toString();	
-				//下载过的网页插入数据库
-				String sql = String.format(format, filename,"url",url);
-				Crawler.mSqlHelper.updateSQL(sql);
+				String site_page = buffer.toString();
 				
 				return site_page;
 			}
@@ -117,7 +103,7 @@ public class HttpDownLoader {
 			httpClient.getConnectionManager().closeIdleConnections(60, TimeUnit.SECONDS);
 		}
 		
-		return site_page;
+		return "";
 	}
 	
 	/**
@@ -126,7 +112,7 @@ public class HttpDownLoader {
 	 */
 	public void downLoadImage(String url){
 		String[] urlist = url.split("/");
-		String filename = Crawler.imgPath + "/" + urlist[urlist.length-1];  //图片文件保存目录,根据url地址自动生成		
+		String filepath = image_dir + "/" + urlist[urlist.length-1];  //图片文件保存目录,根据url地址自动生成		
 		
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpGet httpGet;
@@ -143,7 +129,7 @@ public class HttpDownLoader {
 				InputStream is = entity.getContent();			
 				BufferedInputStream bIn = new BufferedInputStream(is);
 				//文件输出流
-				FileOutputStream fos = new FileOutputStream(new File(filename));
+				FileOutputStream fos = new FileOutputStream(new File(filepath));
 				//缓存数组
 				byte[] tmp = new byte[4096];
 				int len;
@@ -153,9 +139,6 @@ public class HttpDownLoader {
 				is.close();
 				fos.close();
 				
-				//下载过的图片插入数据库
-				String sql = String.format(format, filename,"image",url);
-				Crawler.mSqlHelper.updateSQL(sql);
 			}
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block

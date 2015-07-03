@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 /**
  * Url队列,用来存放没有访问过的URL队列
- * @author liuchun
+ * @author zjupure
  *
  */
 public class UrlQueue {
