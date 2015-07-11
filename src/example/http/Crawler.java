@@ -78,10 +78,10 @@ public class Crawler {
 		
 		for(String url:urlList)
 		{
-			if(url.contains(base_url) && !urlFilter.contains(url))
+			if(!urlFilter.contains(url))
 			{
 				urlQueue.addElem(base_url + url);
-				urlFilter.add(base_url + url);
+				urlFilter.add(url);
 				//log out
 				System.out.println(url);
 			}

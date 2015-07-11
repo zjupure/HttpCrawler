@@ -179,6 +179,7 @@ public class HttpDownLoader {
 					fos.write(tmp, 0, len);
 				}
 				is.close();
+				fos.flush();
 				fos.close();
 				
 				//log out
