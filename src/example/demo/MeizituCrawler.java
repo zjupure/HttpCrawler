@@ -9,15 +9,15 @@ import example.http.Crawler;
  */
 
 public class MeizituCrawler extends Crawler {
-	private static String base_url = "http://www.mzitu.com";
-	private static String base_domain = "mzitu.com";
+	private static String base_url = "http://www.meizitu.com";
+	private static String base_img = "meizitu.com";
 	private static String site_tag = "Meizitu";
 	
-	private static String img_lable = "div.list img";
+	private static String img_lable = "div#picture img";
 	
 	public MeizituCrawler() {
 		// TODO Auto-generated constructor stub
-		super(base_url, base_domain, site_tag);
+		super(base_url, base_img, site_tag);
 		
 		setImageLable(img_lable);
 	}

@@ -9,7 +9,7 @@ import example.utils.UrlQueue;
 
 public class Crawler {
 	private String base_url;
-	private String base_domain;
+	private String base_img;
 	private String site_tags;
 	//链接队列,
 	public  UrlQueue urlQueue = new UrlQueue();  //超链接的队列
@@ -31,7 +31,7 @@ public class Crawler {
 	public Crawler(String url, String domain, String tags)
 	{
 		base_url = url;
-		base_domain = domain;
+		base_img = domain;
 		site_tags = tags;
 		
 		mSqlHelper = new SqlHelper();
@@ -78,10 +78,12 @@ public class Crawler {
 		
 		for(String url:urlList)
 		{
-			if(url.contains(base_domain) && !urlFilter.contains(url))
+			if(url.contains(base_url) && !urlFilter.contains(url))
 			{
-				urlQueue.addElem(url);
-				urlFilter.add(url);
+				urlQueue.addElem(base_url + url);
+				urlFilter.add(base_url + url);
+				//log out
+				System.out.println(url);
 			}
 		}
 	}
@@ -96,10 +98,12 @@ public class Crawler {
 		
 		for(String url:urlList)
 		{
-			if(!imgFilter.contains(url))
+			if(url.contains(base_img) && !imgFilter.contains(url))
 			{
 				imgQueue.addElem(url);
 				imgFilter.add(url);
+				//log out
+				System.out.println(url);
 			}
 		}
 	}

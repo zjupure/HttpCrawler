@@ -2,12 +2,12 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="D:/Program Files/MySQL/MySQL Server 5.0/mysql-connector-java-5.1.35/mysql-connector-java-5.1.35-bin.jar"/>
 	<classpathentry kind="lib" path="E:/Projects/Java/HttpCrawler/lib/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="E:/Projects/Java/HttpCrawler/lib/gson-2.2.4.jar"/>
 	<classpathentry kind="lib" path="E:/Projects/Java/HttpCrawler/lib/httpclient-4.0.3.jar"/>
 	<classpathentry kind="lib" path="E:/Projects/Java/HttpCrawler/lib/httpcore-4.0.1.jar"/>
 	<classpathentry kind="lib" path="E:/Projects/Java/HttpCrawler/lib/httpmime-4.0.3.jar"/>
 	<classpathentry kind="lib" path="E:/Projects/Java/HttpCrawler/lib/jsoup-1.8.1.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files/Java/mysql-connector-java-5.1.35/mysql-connector-java-5.1.35-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

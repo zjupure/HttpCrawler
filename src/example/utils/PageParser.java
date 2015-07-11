@@ -42,8 +42,9 @@ public class PageParser {
 		
 		for(Element link: links)
 		{
-			String url = link.attr("abs:href");
-			urlList.add(url);
+			String url = link.attr("href");
+			if(!url.startsWith("http") && !url.startsWith("https"))
+				urlList.add(url);
 		}
 		
 		return urlList;
