@@ -27,6 +27,8 @@ public class Crawler {
 	public  PageParser mPageParser;
 	//特定标签
 	public String image_lable;
+	//线程数
+	public int threadNum = 2;
 	
 	public Crawler(String url, String domain, String tags)
 	{
@@ -37,6 +39,7 @@ public class Crawler {
 		mSqlHelper = new SqlHelper();
 		mDownLoader = new HttpDownLoader(site_tags);
 	}
+	
 	
 	/**
 	 * 执行线程 
@@ -49,7 +52,7 @@ public class Crawler {
 		AddSuperLink();
 		AddImageLink(image_lable);
 		//建立任务并启动线程
-		for(int i = 1; i <= 2; i++){
+		for(int i = 1; i <= threadNum; i++){
 			UrlCrawlerTask urlTask = new UrlCrawlerTask();
 			Thread urlThread = new Thread(urlTask,"urlTask" + i);
 			urlThread.start();
@@ -58,6 +61,15 @@ public class Crawler {
 			Thread imgThread = new Thread(imgTask,"ImgTask" + i);
 			imgThread.start();			
 		}
+	}
+	
+	/**
+	 * 设置多线程数目
+	 * @param num
+	 */
+	public void setThreadNum(int num)
+	{
+		threadNum = num;
 	}
 	
 	/**
